@@ -3,6 +3,7 @@ import controlP5.*;
 
 ControlP5 cp5;
 
+int prevValue;
 int prutok = 0;
 int lastprutok;
 boolean dalkove = false;
@@ -13,8 +14,9 @@ void setup(){
   smooth();
   size(400,200);
   println(Serial.list());
+  background(0);
+  myPort = new Serial(this, Serial.list()[0], 9600);
   
-  myPort = new Serial(this, Serial.list()[0],9600);
   myPort.bufferUntil('\n');
 
   cp5 = new ControlP5(this);
@@ -30,12 +32,11 @@ void setup(){
   PFont font;
   font = loadFont("TrebuchetMS-Bold-48.vlw");
   textFont(font, 44);
-  background(0);
+  
 }
 
 void draw(){
-  smooth();
-  noStroke();
+  ;
 }
 
 void serialEvent(Serial myPort){
@@ -52,16 +53,24 @@ void serialEvent(Serial myPort){
       cp5.getController("flow").setLock(false);
       textSize(44);
       text(prutok, 155, 100);
+      if(prutok == 100){
+      text("slm", 230, 100);
+      }else{
       text("slm", 220, 100);
-      println(prutok);println("");
+      }
+      //println(prutok);println("");
       dalkove = true;
-      //cp5.getController("flow").setVisible(true);
+      cp5.getController("flow").setVisible(true);
         
   }else{       //lokalne
       prutok = int(inString);
       background(0);
       text(prutok, 155, 100);
+      if(prutok == 100){
+      text("slm", 230, 100);
+      }else{
       text("slm", 220, 100);
+      }
       cp5.getController("flow").lock();
       cp5.getController("flow").setValue(prutok);
   }
@@ -70,8 +79,12 @@ void serialEvent(Serial myPort){
 }
 
 void flow(float flowValue) {
-  if (dalkove){
+  int f = int(flowValue);
+  //println(flowValue);
+  if(f!=prevValue){ //posle hodnoty jen kdyz se lisi, nezahlcuje seriovy port
   myPort.write(int(flowValue));
+  println(int(flowValue));
   }
+  prevValue = f;
 }
 

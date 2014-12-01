@@ -169,7 +169,7 @@ if(prevcounter!=counter || remoteState!=remoteStateLast){
   remoteStateLast = remoteState;
 }
 
-} else {
+} else { //rizeno dalkove z GUI v PC
   
   if(!remoteState){
       remoteState = true;
@@ -177,15 +177,19 @@ if(prevcounter!=counter || remoteState!=remoteStateLast){
       Serial.println(counter);
       remoteStateLast = true;
   }
-  byte c;
+  //byte c;
     if(Serial.available()){
-      c = Serial.read();
-      counter = map(c, 0, 100, 0, 4095);
-      setDAC(counter);
+      counter = Serial.read();
+      setDAC(map(counter, 0, 100, 0, 4095));
+      //Serial.print("d");
+            
+    }else if(prevcounter!=counter){ //pošle data, když je nečte a když předchozi!=aktualní 
+      if(counter == 0)digitalWrite(8, HIGH);
+      else digitalWrite(8, LOW);
       nacteno = map(analogRead(DACoutputReadPin), 0, 1023, 0, 100);
-      Serial.print("d");
-      Serial.println(nacteno);
-    }
+      Serial.print("d");Serial.println (nacteno);
+      prevcounter=counter; 
+    } 
   }
 
 
