@@ -1,7 +1,7 @@
 import processing.serial.*;
-import controlP5.*;  
+import g4p_controls.*; 
 
-ControlP5 cp5;
+GKnob kb;
 
 int prutok = 0;
 int lastprutok;
@@ -17,16 +17,27 @@ void setup(){
   myPort = new Serial(this, Serial.list()[0],9600);
   myPort.bufferUntil('\n');
 
-  cp5 = new ControlP5(this);
-  
-  cp5.addSlider("flow")
-     .setPosition(100,175)
-     .setRange(0,100)
-     .setSize(200,20)    
-     .setNumberOfTickMarks(101)
-     //.setSliderMode(Slider.FLEXIBLE)
-     ;
+  kb = new GKnob(this, 35, 100, 80 , 80, 0.7);
+  kb.setTurnRange(90, 35);
+  kb.setTurnMode(G4P.CTRL_HORIZONTAL);
+  kb.setValue(0);
+  kb.setLocalColorScheme(6);
+  kb.setNbrTicks(10); 
+  kb.setShowTicks(true); 
+  kb.setShowTrack(true);
+  kb.setShowTicks(true); 
+  kb.setShowTrack(true); 
+  kb.setShowArcOnly(false); 
+  kb.setStickToTicks(false); 
+  kb.setIncludeOverBezel(true); 
+  kb.setOverArcOnly(false); 
+  kb.setSensitivity(1.45); 
+  kb.setEasing(12.78125); 
+  kb.setLimits(0, 100);
      
+  frameRate(15);
+  //noLoop();
+  
   PFont font;
   font = loadFont("TrebuchetMS-Bold-48.vlw");
   textFont(font, 44);
@@ -34,8 +45,7 @@ void setup(){
 }
 
 void draw(){
-  smooth();
-  noStroke();
+  ;
 }
 
 void serialEvent(Serial myPort){
@@ -49,7 +59,7 @@ void serialEvent(Serial myPort){
       background(50);
       textSize(12);
       text("DÁLKOVĚ", 10, 20);
-      cp5.getController("flow").setLock(false);
+      //cp5.getController("flow").setLock(false);
       textSize(44);
       text(prutok, 155, 100);
       text("slm", 220, 100);
@@ -57,21 +67,24 @@ void serialEvent(Serial myPort){
       dalkove = true;
       //cp5.getController("flow").setVisible(true);
         
-  }else{       //lokalne
+    }else{       //lokalne
       prutok = int(inString);
       background(0);
       text(prutok, 155, 100);
       text("slm", 220, 100);
-      cp5.getController("flow").lock();
-      cp5.getController("flow").setValue(prutok);
+      //cp5.getController("flow").lock();
+      kb.setValue(prutok);
   }
-  
+  //redraw();
   }
 }
 
-void flow(float flowValue) {
-  if (dalkove){
-  myPort.write(int(flowValue));
+public void handleKnobEvents(GValueControl knob, GEvent event) { 
+  if (dalkove) {
+    myPort.write(knob.getValueI());
+    //redraw();
   }
+  
+  
 }
 
