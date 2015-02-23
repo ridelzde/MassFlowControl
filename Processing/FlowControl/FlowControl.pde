@@ -4,11 +4,14 @@ import controlP5.*;
 PImage bg;
 ControlP5 cp5;
 
+<<<<<<< HEAD
 Textlabel myTextlabelA;
 Textlabel myTextlabelB;
 
 
 int prevValue = 1000;
+=======
+>>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
 int prutok = 0;
 int lastprutok;
 boolean dalkove = false;
@@ -20,9 +23,8 @@ void setup(){
   smooth();
   size(658 ,320);
   println(Serial.list());
-  background(0);
-  myPort = new Serial(this, Serial.list()[0], 9600);
   
+  myPort = new Serial(this, Serial.list()[0],9600);
   myPort.bufferUntil('\n');
 
   cp5 = new ControlP5(this);
@@ -55,6 +57,7 @@ void setup(){
   PFont font;
   font = loadFont("TrebuchetMS-Bold-48.vlw");
   textFont(font, 44);
+<<<<<<< HEAD
    background(bg);
    
    myTextlabelA = cp5.addTextlabel("litry")
@@ -79,6 +82,14 @@ void draw(){
   myTextlabelA.draw(this);
        
 
+=======
+  background(0);
+}
+
+void draw(){
+  smooth();
+  noStroke();
+>>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
 }
 
 void serialEvent(Serial myPort){
@@ -96,6 +107,7 @@ void serialEvent(Serial myPort){
       text("DÁLKOVĚ", 10, 20);*/
       cp5.getController("flow").setLock(false);
       textSize(44);
+<<<<<<< HEAD
       /*text(prutok, 155, 100);
       if(prutok == 100){
       text("slm", 230, 100);
@@ -103,11 +115,17 @@ void serialEvent(Serial myPort){
       text("slm", 220, 100);
       }*/
       //println(prutok);println("");
+=======
+      text(prutok, 155, 100);
+      text("slm", 220, 100);
+      println(prutok);println("");
+>>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
       dalkove = true;
-      cp5.getController("flow").setVisible(true);
+      //cp5.getController("flow").setVisible(true);
         
   }else{       //lokalne
       prutok = int(inString);
+<<<<<<< HEAD
       //prutok2 = inString;
        background(bg);
       //background(0);
@@ -118,6 +136,11 @@ void serialEvent(Serial myPort){
       text("slm", 220, 100);
       }*/
       myTextlabelA.setText(inString);
+=======
+      background(0);
+      text(prutok, 155, 100);
+      text("slm", 220, 100);
+>>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
       cp5.getController("flow").lock();
       cp5.getController("flow").setValue(prutok);
   }
@@ -126,12 +149,8 @@ void serialEvent(Serial myPort){
 }
 
 void flow(float flowValue) {
-  int f = int(flowValue);
-  //println(flowValue);
-  if(f!=prevValue){ //posle hodnoty jen kdyz se lisi, nezahlcuje seriovy port
+  if (dalkove){
   myPort.write(int(flowValue));
-  println(int(flowValue));
   }
-  prevValue = f;
 }
 
