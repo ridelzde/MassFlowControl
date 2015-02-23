@@ -1,9 +1,9 @@
 import processing.serial.*;
 import controlP5.*;  
 
-PImage bg;
 ControlP5 cp5;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 Textlabel myTextlabelA;
 Textlabel myTextlabelB;
@@ -12,6 +12,9 @@ Textlabel myTextlabelB;
 int prevValue = 1000;
 =======
 >>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
+=======
+int prevValue;
+>>>>>>> parent of b370816... Zmena GUI
 int prutok = 0;
 int lastprutok;
 boolean dalkove = false;
@@ -19,9 +22,8 @@ Serial myPort;
 int myColor = color(0,0,0);
 
 void setup(){
-  bg = loadImage("lcd3.jpg");
   smooth();
-  size(658 ,320);
+  size(400,200);
   println(Serial.list());
   
   myPort = new Serial(this, Serial.list()[0],9600);
@@ -37,26 +39,10 @@ void setup(){
      //.setSliderMode(Slider.FLEXIBLE)
      ;
      
-  PImage[] imgsd = {loadImage("button_ad.png"),loadImage("button_bd.png"),loadImage("button_cd.png")};
-  PImage[] imgsu = {loadImage("button_a.png"),loadImage("button_b.png"),loadImage("button_c.png")};
-  cp5.addButton("UP")
-     .setValue(128)
-     .setPosition(597,65)
-     .setImages(imgsu)
-     .updateSize()
-     ;
-     
-  cp5.addButton("DOWN")
-     .setValue(128)
-     .setPosition(597,130)
-     .setImages(imgsd)
-     .updateSize()
-     ;
-     
-      
   PFont font;
   font = loadFont("TrebuchetMS-Bold-48.vlw");
   textFont(font, 44);
+<<<<<<< HEAD
 <<<<<<< HEAD
    background(bg);
    
@@ -73,11 +59,14 @@ void setup(){
                     .setColorValue(0xffffff00)
                     .setFont(font)
                     ;       
+=======
+>>>>>>> parent of b370816... Zmena GUI
   
 }
 
 void draw(){
   ;
+<<<<<<< HEAD
   myTextlabelB.draw(this);
   myTextlabelA.draw(this);
        
@@ -90,6 +79,8 @@ void draw(){
   smooth();
   noStroke();
 >>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
+=======
+>>>>>>> parent of b370816... Zmena GUI
 }
 
 void serialEvent(Serial myPort){
@@ -100,20 +91,22 @@ void serialEvent(Serial myPort){
 
     if (firstChar == 'd'){ //pokud je rizeno dalkove, prvni pismeno bude d
       prutok = int(inString.substring(1));
-      //prutok2 = inString.substring(1);
-      //background(50);
-       background(bg);
-      /*textSize(12);
-      text("DÁLKOVĚ", 10, 20);*/
+      background(50);
+      textSize(12);
+      text("DÁLKOVĚ", 10, 20);
       cp5.getController("flow").setLock(false);
       textSize(44);
 <<<<<<< HEAD
+<<<<<<< HEAD
       /*text(prutok, 155, 100);
+=======
+      text(prutok, 155, 100);
+>>>>>>> parent of b370816... Zmena GUI
       if(prutok == 100){
       text("slm", 230, 100);
       }else{
       text("slm", 220, 100);
-      }*/
+      }
       //println(prutok);println("");
 =======
       text(prutok, 155, 100);
@@ -126,14 +119,20 @@ void serialEvent(Serial myPort){
   }else{       //lokalne
       prutok = int(inString);
 <<<<<<< HEAD
+<<<<<<< HEAD
       //prutok2 = inString;
        background(bg);
       //background(0);
       /*text(prutok, 155, 100);
+=======
+      background(0);
+      text(prutok, 155, 100);
+>>>>>>> parent of b370816... Zmena GUI
       if(prutok == 100){
       text("slm", 230, 100);
       }else{
       text("slm", 220, 100);
+<<<<<<< HEAD
       }*/
       myTextlabelA.setText(inString);
 =======
@@ -141,6 +140,9 @@ void serialEvent(Serial myPort){
       text(prutok, 155, 100);
       text("slm", 220, 100);
 >>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
+=======
+      }
+>>>>>>> parent of b370816... Zmena GUI
       cp5.getController("flow").lock();
       cp5.getController("flow").setValue(prutok);
   }
