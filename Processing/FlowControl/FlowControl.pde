@@ -5,14 +5,11 @@ PImage bg;
 ControlP5 cp5;
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 Textlabel myTextlabelA;
 Textlabel myTextlabelB;
 
 
 int prevValue = 1000;
-=======
->>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
 =======
 >>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
 int prutok = 0;
@@ -61,7 +58,6 @@ void setup(){
   font = loadFont("TrebuchetMS-Bold-48.vlw");
   textFont(font, 44);
 <<<<<<< HEAD
-<<<<<<< HEAD
    background(bg);
    
    myTextlabelA = cp5.addTextlabel("litry")
@@ -94,14 +90,6 @@ void draw(){
   smooth();
   noStroke();
 >>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
-=======
-  background(0);
-}
-
-void draw(){
-  smooth();
-  noStroke();
->>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
 }
 
 void serialEvent(Serial myPort){
@@ -120,7 +108,6 @@ void serialEvent(Serial myPort){
       cp5.getController("flow").setLock(false);
       textSize(44);
 <<<<<<< HEAD
-<<<<<<< HEAD
       /*text(prutok, 155, 100);
       if(prutok == 100){
       text("slm", 230, 100);
@@ -133,17 +120,11 @@ void serialEvent(Serial myPort){
       text("slm", 220, 100);
       println(prutok);println("");
 >>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
-=======
-      text(prutok, 155, 100);
-      text("slm", 220, 100);
-      println(prutok);println("");
->>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
       dalkove = true;
       //cp5.getController("flow").setVisible(true);
         
   }else{       //lokalne
       prutok = int(inString);
-<<<<<<< HEAD
 <<<<<<< HEAD
       //prutok2 = inString;
        background(bg);
@@ -155,11 +136,6 @@ void serialEvent(Serial myPort){
       text("slm", 220, 100);
       }*/
       myTextlabelA.setText(inString);
-=======
-      background(0);
-      text(prutok, 155, 100);
-      text("slm", 220, 100);
->>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
 =======
       background(0);
       text(prutok, 155, 100);
