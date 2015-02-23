@@ -5,6 +5,7 @@ ControlP5 cp5;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Textlabel myTextlabelA;
 Textlabel myTextlabelB;
 
@@ -15,6 +16,8 @@ int prevValue = 1000;
 =======
 int prevValue;
 >>>>>>> parent of b370816... Zmena GUI
+=======
+>>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
 int prutok = 0;
 int lastprutok;
 boolean dalkove = false;
@@ -42,6 +45,7 @@ void setup(){
   PFont font;
   font = loadFont("TrebuchetMS-Bold-48.vlw");
   textFont(font, 44);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
    background(bg);
@@ -81,6 +85,14 @@ void draw(){
 >>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
 =======
 >>>>>>> parent of b370816... Zmena GUI
+=======
+  background(0);
+}
+
+void draw(){
+  smooth();
+  noStroke();
+>>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
 }
 
 void serialEvent(Serial myPort){
@@ -101,6 +113,7 @@ void serialEvent(Serial myPort){
       /*text(prutok, 155, 100);
 =======
       text(prutok, 155, 100);
+<<<<<<< HEAD
 >>>>>>> parent of b370816... Zmena GUI
       if(prutok == 100){
       text("slm", 230, 100);
@@ -110,6 +123,10 @@ void serialEvent(Serial myPort){
       //println(prutok);println("");
 =======
       text(prutok, 155, 100);
+      text("slm", 220, 100);
+      println(prutok);println("");
+>>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
+=======
       text("slm", 220, 100);
       println(prutok);println("");
 >>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
@@ -127,6 +144,7 @@ void serialEvent(Serial myPort){
 =======
       background(0);
       text(prutok, 155, 100);
+<<<<<<< HEAD
 >>>>>>> parent of b370816... Zmena GUI
       if(prutok == 100){
       text("slm", 230, 100);
@@ -143,6 +161,9 @@ void serialEvent(Serial myPort){
 =======
       }
 >>>>>>> parent of b370816... Zmena GUI
+=======
+      text("slm", 220, 100);
+>>>>>>> parent of dd00997... Vyreseni problemu s padanim programu.
       cp5.getController("flow").lock();
       cp5.getController("flow").setValue(prutok);
   }
