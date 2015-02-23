@@ -138,7 +138,7 @@ byte thisSwitch=thisSwitch_justPressed();
 switch(thisSwitch)
 {
 case 0://stisk RED buttonu
-//Serial.println("switch 1 just pressed");
+Serial.println("switch RED just pressed");
 counter++;
 if(counter>=MAX_PRUTOK)counter=MAX_PRUTOK; //Serial.println (counter/4096.0*100,4);
 /* pocita cas mezi stisky tlacitka
@@ -150,7 +150,7 @@ allow = true;
 timerRED = millis();*/
 break;
 case 1://stisk BLACK buttonu
-//Serial.println("switch 2 just pressed"); 
+Serial.println("switch BLACK just pressed"); 
 if (counter <= 0)counter = 0;
 else counter--; 
 //Serial.println (counter/4096.0*100,4);
